@@ -1,0 +1,183 @@
+body {
+    background: #f2fbe8;
+    margin-top: 106px; /* adjust this if the height of the menu bar changes */
+}
+
+.nav {
+    margin-top: 28px; /* this is a faux center fix for the nav options - adjust this if you wish to change the logo height or the font of the menu items */
+}
+
+.fLeft {
+    float: left;
+}
+
+.fRight {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.tblFont th {
+    color: #3c763d;
+}
+
+.labelColor {
+    color: #3c763d;
+    font-weight: bold;
+}
+
+.txtBoxesMin {
+    max-width: 150px;
+    margin-left: 8px;
+}
+
+
+
+.ddlBoxesMin {
+    max-width: 120px;
+    margin-left: 23px;
+}
+
+.btnStandardWidth {
+    width: 80px;
+}
+
+.hideGridColumn {
+    display: none;
+}
+
+
+/*div.fileinputs {
+	position: relative;
+}
+
+div.fakefile {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+}
+
+input.file {
+	position: relative;
+	text-align: right;
+	-moz-opacity:0 ;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 2;
+}*/
+
+#upload-file-container {
+   background: url(../images/Search-icon-big.gif) no-repeat;
+}
+
+#upload-file-container input {
+   filter: alpha(opacity=0);
+   opacity: 0;
+}
+
+
+
+.txtBoxesInsert {
+    max-width: 250px;
+    
+}
+
+.txtBoxesInsert:-moz-placeholder {
+  color: #999999;
+}
+
+.txtBoxesInsert::-moz-placeholder {
+  color: #999999;
+}
+
+.txtBoxesInsert:-ms-input-placeholder {
+  color: #999999;
+}
+
+.txtBoxesInsert::-webkit-input-placeholder {
+  color: #999999;
+}
+
+.txtBoxesInsert {
+  /*display: block;*/
+  width: 100%;
+  height: 25px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  /*vertical-align: middle;*/
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.txtBoxesInsert:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.txtBoxesInsert[disabled],
+.txtBoxesInsert[readonly],
+fieldset[disabled] .txtBoxesInsert {
+  cursor: not-allowed;
+  background-color: #eeeeee;
+}
+
+.divContenitore div { float: left; margin-right: 10px; min-height: 30px}
+
+
+.fileUploadAllegato {
+    width: 350px;
+}
+
+.divContGriglia div table td {
+    width: 100%;
+    border: 1px solid #cdcdcd;
+}
+
+.stileGriglia table th {
+    border: 1px solid #cdcdcd;
+}
+
+.metro .tile .tile-content.image-set img {
+  margin: 0;
+  padding: 0;
+  width: 25% !important;
+  height: 50%;
+  float: left;
+  border: 1px #1e1e1e solid;
+}
+.metro .tile .tile-content.image-set img:first-child {
+  width: 50% !important;
+  float: left;
+  height: 100%;
+}
+
+.modal-mini {
+    width: 300px;
+}
+.modal-Foto {
+    width: 600px;
+    /*height: 600px;*/
+}
+
+.txtWidt180Max {
+    max-width: 180px;
+}
+
+body .modalFoto {
+    /* new custom width */
+    /*width: 560px;*/
+    /* must be half of the width, minus scrollbar on the left (30px) */
+    /*margin-left: -280px;*/
+} 

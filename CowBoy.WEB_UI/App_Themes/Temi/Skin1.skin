@@ -1,0 +1,5 @@
+﻿
+
+<asp:TextBox runat="server" SkinID="sk_txtData" Width="105" CssClass="classData txtBoxesInsert" autocomplete="off"/>  
+<asp:TextBox runat="server" SkinID="sk_txtDataDA" Width="105" CssClass="classDataDA txtBoxesInsert"  autocomplete="off"/>  
+<asp:TextBox runat="server" SkinID="sk_txtDataA" Width="105" CssClass="classDataA txtBoxesInsert"  autocomplete="off"/>  

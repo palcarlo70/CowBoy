@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a2a925ccbc794bafb65e1bf1db68b84f" Name="Diagram1">
+        <EntityTypeShape EntityType="CowBoyModel.Anagrafica" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CowBoyModel.Foto" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CowBoyModel.PartiSalti" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CowBoyModel.Salti" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CowBoyModel.Stati" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="CowBoyModel.FK_Anagrafica_IdMadre" ManuallyRouted="false" />
+        <AssociationConnector Association="CowBoyModel.FK_Anagrafica_IdPadre" ManuallyRouted="false" />
+        <AssociationConnector Association="CowBoyModel.FK_Foto_Anagrafica" ManuallyRouted="false" />
+        <AssociationConnector Association="CowBoyModel.FK_PartiSalti_Anagrafica" ManuallyRouted="false" />
+        <AssociationConnector Association="CowBoyModel.FK_Salti_Anagrafica" ManuallyRouted="false" />
+        <AssociationConnector Association="CowBoyModel.FK_Salti_PartiSalti" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

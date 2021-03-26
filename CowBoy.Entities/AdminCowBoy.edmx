@@ -1,0 +1,598 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="COWModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Anagrafica">
+          <Key>
+            <PropertyRef Name="idAnagrafica" />
+          </Key>
+          <Property Name="idAnagrafica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="120" />
+          <Property Name="Madre" Type="int" />
+          <Property Name="Padre" Type="int" />
+          <Property Name="DataNascita" Type="datetime" />
+          <Property Name="DataFine" Type="datetime" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="ToroDaMonta" Type="bit" />
+          <Property Name="Sesso" Type="char" MaxLength="1" />
+          <Property Name="MatricolaASL" Type="nvarchar" MaxLength="150" />
+          <Property Name="MatricolaAzienda" Type="nvarchar" MaxLength="150" />
+          <Property Name="idFiglio" Type="int" />
+          <Property Name="ToroArtificiale" Type="bit" />
+        </EntityType>
+        <EntityType Name="Foto">
+          <Key>
+            <PropertyRef Name="idFoto" />
+          </Key>
+          <Property Name="idFoto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAnagrafica" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="150" />
+          <Property Name="Principale" Type="bit" />
+          <Property Name="DataInserimento" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PartiSalti">
+          <Key>
+            <PropertyRef Name="idPartoSalto" />
+          </Key>
+          <Property Name="idPartoSalto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAnagrafica" Type="int" Nullable="false" />
+          <Property Name="DataMessaAsciutta" Type="datetime" />
+          <Property Name="DataParto" Type="datetime" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Naturale" Type="bit" />
+          <Property Name="Facile" Type="bit" />
+          <Property Name="DaSola" Type="bit" />
+          <Property Name="PartoNoParto" Type="nvarchar" MaxLength="6" />
+          <Property Name="Abortito" Type="bit" />
+        </EntityType>
+        <EntityType Name="PrimaNota">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Anno" Type="int" />
+          <Property Name="Data" Type="datetime" />
+          <Property Name="Numero" Type="nvarchar" MaxLength="100" />
+          <Property Name="Descrizione" Type="nvarchar" MaxLength="250" />
+          <Property Name="PagIncassata" Type="bit" />
+          <Property Name="IdFornitoreCliente" Type="int" />
+          <Property Name="Dare" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="Avere" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="ImporotIva" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="Note" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Salti">
+          <Key>
+            <PropertyRef Name="idSalto" />
+          </Key>
+          <Property Name="idSalto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPartoSalto" Type="int" Nullable="false" />
+          <Property Name="DataSalto" Type="datetime" />
+          <Property Name="idToro" Type="int" />
+          <Property Name="SaltoArtificiale" Type="bit" />
+          <Property Name="MatrToroArt" Type="nvarchar(max)" />
+          <Property Name="Note" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Stati">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Stato" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="VociPrimaNota">
+          <Key>
+            <PropertyRef Name="IdVoce" />
+          </Key>
+          <Property Name="IdVoce" Type="int" Nullable="false" />
+          <Property Name="IdPrimaNota" Type="int" />
+          <Property Name="Descrizione" Type="nvarchar" MaxLength="150" />
+          <Property Name="Dare" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="Avere" Type="decimal" Precision="12" Scale="4" />
+          <Property Name="Iva" Type="decimal" Precision="3" Scale="2" />
+        </EntityType>
+        <Association Name="FK_Anagrafica_IdMadre">
+          <End Role="Anagrafica" Type="Self.Anagrafica" Multiplicity="0..1" />
+          <End Role="Anagrafica1" Type="Self.Anagrafica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anagrafica">
+              <PropertyRef Name="idAnagrafica" />
+            </Principal>
+            <Dependent Role="Anagrafica1">
+              <PropertyRef Name="Madre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Anagrafica_IdPadre">
+          <End Role="Anagrafica" Type="Self.Anagrafica" Multiplicity="0..1" />
+          <End Role="Anagrafica1" Type="Self.Anagrafica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anagrafica">
+              <PropertyRef Name="idAnagrafica" />
+            </Principal>
+            <Dependent Role="Anagrafica1">
+              <PropertyRef Name="Padre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Foto_Anagrafica">
+          <End Role="Anagrafica" Type="Self.Anagrafica" Multiplicity="1" />
+          <End Role="Foto" Type="Self.Foto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anagrafica">
+              <PropertyRef Name="idAnagrafica" />
+            </Principal>
+            <Dependent Role="Foto">
+              <PropertyRef Name="idAnagrafica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartiSalti_Anagrafica">
+          <End Role="Anagrafica" Type="Self.Anagrafica" Multiplicity="1" />
+          <End Role="PartiSalti" Type="Self.PartiSalti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anagrafica">
+              <PropertyRef Name="idAnagrafica" />
+            </Principal>
+            <Dependent Role="PartiSalti">
+              <PropertyRef Name="idAnagrafica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salti_Anagrafica">
+          <End Role="Anagrafica" Type="Self.Anagrafica" Multiplicity="0..1" />
+          <End Role="Salti" Type="Self.Salti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anagrafica">
+              <PropertyRef Name="idAnagrafica" />
+            </Principal>
+            <Dependent Role="Salti">
+              <PropertyRef Name="idToro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salti_PartiSalti">
+          <End Role="PartiSalti" Type="Self.PartiSalti" Multiplicity="1" />
+          <End Role="Salti" Type="Self.Salti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartiSalti">
+              <PropertyRef Name="idPartoSalto" />
+            </Principal>
+            <Dependent Role="Salti">
+              <PropertyRef Name="idPartoSalto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VociPrimaNota_PrimaNota">
+          <End Role="PrimaNota" Type="Self.PrimaNota" Multiplicity="0..1" />
+          <End Role="VociPrimaNota" Type="Self.VociPrimaNota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrimaNota">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VociPrimaNota">
+              <PropertyRef Name="IdPrimaNota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="COWModelStoreContainer">
+          <EntitySet Name="Anagrafica" EntityType="Self.Anagrafica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Foto" EntityType="Self.Foto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PartiSalti" EntityType="Self.PartiSalti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrimaNota" EntityType="Self.PrimaNota" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salti" EntityType="Self.Salti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stati" EntityType="Self.Stati" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VociPrimaNota" EntityType="Self.VociPrimaNota" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Anagrafica_IdMadre" Association="Self.FK_Anagrafica_IdMadre">
+            <End Role="Anagrafica" EntitySet="Anagrafica" />
+            <End Role="Anagrafica1" EntitySet="Anagrafica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Anagrafica_IdPadre" Association="Self.FK_Anagrafica_IdPadre">
+            <End Role="Anagrafica" EntitySet="Anagrafica" />
+            <End Role="Anagrafica1" EntitySet="Anagrafica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Foto_Anagrafica" Association="Self.FK_Foto_Anagrafica">
+            <End Role="Anagrafica" EntitySet="Anagrafica" />
+            <End Role="Foto" EntitySet="Foto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartiSalti_Anagrafica" Association="Self.FK_PartiSalti_Anagrafica">
+            <End Role="Anagrafica" EntitySet="Anagrafica" />
+            <End Role="PartiSalti" EntitySet="PartiSalti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salti_Anagrafica" Association="Self.FK_Salti_Anagrafica">
+            <End Role="Anagrafica" EntitySet="Anagrafica" />
+            <End Role="Salti" EntitySet="Salti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salti_PartiSalti" Association="Self.FK_Salti_PartiSalti">
+            <End Role="PartiSalti" EntitySet="PartiSalti" />
+            <End Role="Salti" EntitySet="Salti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VociPrimaNota_PrimaNota" Association="Self.FK_VociPrimaNota_PrimaNota">
+            <End Role="PrimaNota" EntitySet="PrimaNota" />
+            <End Role="VociPrimaNota" EntitySet="VociPrimaNota" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="COWModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Anagrafica">
+          <Key>
+            <PropertyRef Name="idAnagrafica" />
+          </Key>
+          <Property Name="idAnagrafica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="Madre" Type="Int32" />
+          <Property Name="Padre" Type="Int32" />
+          <Property Name="DataNascita" Type="DateTime" Precision="3" />
+          <Property Name="DataFine" Type="DateTime" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ToroDaMonta" Type="Boolean" />
+          <Property Name="Sesso" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MatricolaASL" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="MatricolaAzienda" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="idFiglio" Type="Int32" />
+          <NavigationProperty Name="Anagrafica1" Relationship="Self.FK_Anagrafica_IdMadre" FromRole="Anagrafica" ToRole="Anagrafica1" />
+          <NavigationProperty Name="Anagrafica2" Relationship="Self.FK_Anagrafica_IdMadre" FromRole="Anagrafica1" ToRole="Anagrafica" />
+          <NavigationProperty Name="Anagrafica11" Relationship="Self.FK_Anagrafica_IdPadre" FromRole="Anagrafica" ToRole="Anagrafica1" />
+          <NavigationProperty Name="Anagrafica3" Relationship="Self.FK_Anagrafica_IdPadre" FromRole="Anagrafica1" ToRole="Anagrafica" />
+          <NavigationProperty Name="Foto" Relationship="Self.FK_Foto_Anagrafica" FromRole="Anagrafica" ToRole="Foto" />
+          <NavigationProperty Name="PartiSalti" Relationship="Self.FK_PartiSalti_Anagrafica" FromRole="Anagrafica" ToRole="PartiSalti" />
+          <Property Name="ToroArtificiale" Type="Boolean" />
+          <NavigationProperty Name="Salti" Relationship="COWModel.FK_Salti_Anagrafica" FromRole="Anagrafica" ToRole="Salti" />
+        </EntityType>
+        <EntityType Name="Foto">
+          <Key>
+            <PropertyRef Name="idFoto" />
+          </Key>
+          <Property Name="idFoto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAnagrafica" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Principale" Type="Boolean" />
+          <NavigationProperty Name="Anagrafica" Relationship="Self.FK_Foto_Anagrafica" FromRole="Foto" ToRole="Anagrafica" />
+          <Property Name="DataInserimento" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PartiSalti">
+          <Key>
+            <PropertyRef Name="idPartoSalto" />
+          </Key>
+          <Property Name="idPartoSalto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAnagrafica" Type="Int32" Nullable="false" />
+          <Property Name="DataMessaAsciutta" Type="DateTime" Precision="3" />
+          <Property Name="DataParto" Type="DateTime" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Naturale" Type="Boolean" />
+          <Property Name="Facile" Type="Boolean" />
+          <Property Name="DaSola" Type="Boolean" />
+          <Property Name="PartoNoParto" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Anagrafica" Relationship="Self.FK_PartiSalti_Anagrafica" FromRole="PartiSalti" ToRole="Anagrafica" />
+          <NavigationProperty Name="Salti" Relationship="Self.FK_Salti_PartiSalti" FromRole="PartiSalti" ToRole="Salti" />
+          <Property Name="Abortito" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Salti">
+          <Key>
+            <PropertyRef Name="idSalto" />
+          </Key>
+          <Property Name="idSalto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPartoSalto" Type="Int32" Nullable="false" />
+          <Property Name="DataSalto" Type="DateTime" Precision="3" />
+          <Property Name="idToro" Type="Int32" />
+          <Property Name="SaltoArtificiale" Type="Boolean" />
+          <Property Name="MatrToroArt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PartiSalti" Relationship="Self.FK_Salti_PartiSalti" FromRole="Salti" ToRole="PartiSalti" />
+          <NavigationProperty Name="Anagrafica" Relationship="COWModel.FK_Salti_Anagrafica" FromRole="Salti" ToRole="Anagrafica" />
+        </EntityType>
+        <EntityType Name="Stati">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Stato" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Anagrafica_IdMadre">
+          <End Role="Anagrafica" Type="Self.Anagrafica" Multiplicity="0..1" />
+          <End Role="Anagrafica1" Type="Self.Anagrafica" Multiplicity="*" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Anagrafica">
+              <PropertyRef Name="idAnagrafica" />
+            </Principal>
+            <Dependent Role="Anagrafica1">
+              <PropertyRef Name="Madre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Anagrafica_IdPadre">
+          <End Role="Anagrafica" Type="Self.Anagrafica" Multiplicity="0..1" />
+          <End Role="Anagrafica1" Type="Self.Anagrafica" Multiplicity="*" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Anagrafica">
+              <PropertyRef Name="idAnagrafica" />
+            </Principal>
+            <Dependent Role="Anagrafica1">
+              <PropertyRef Name="Padre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Foto_Anagrafica">
+          <End Role="Anagrafica" Type="Self.Anagrafica" Multiplicity="1" >
+          </End>
+          <End Role="Foto" Type="Self.Foto" Multiplicity="*" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Anagrafica">
+              <PropertyRef Name="idAnagrafica" />
+            </Principal>
+            <Dependent Role="Foto">
+              <PropertyRef Name="idAnagrafica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartiSalti_Anagrafica">
+          <End Role="Anagrafica" Type="Self.Anagrafica" Multiplicity="1" >
+          </End>
+          <End Role="PartiSalti" Type="Self.PartiSalti" Multiplicity="*" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Anagrafica">
+              <PropertyRef Name="idAnagrafica" />
+            </Principal>
+            <Dependent Role="PartiSalti">
+              <PropertyRef Name="idAnagrafica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salti_PartiSalti">
+          <End Role="PartiSalti" Type="Self.PartiSalti" Multiplicity="1" >
+          </End>
+          <End Role="Salti" Type="Self.Salti" Multiplicity="*" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="PartiSalti">
+              <PropertyRef Name="idPartoSalto" />
+            </Principal>
+            <Dependent Role="Salti">
+              <PropertyRef Name="idPartoSalto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CowBoyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Anagrafica" EntityType="Self.Anagrafica" />
+          <EntitySet Name="Foto" EntityType="Self.Foto" />
+          <EntitySet Name="PartiSalti" EntityType="Self.PartiSalti" />
+          <EntitySet Name="Salti" EntityType="Self.Salti" />
+          <EntitySet Name="Stati" EntityType="Self.Stati" />
+          <AssociationSet Name="FK_Anagrafica_IdMadre" Association="Self.FK_Anagrafica_IdMadre">
+            <End Role="Anagrafica" EntitySet="Anagrafica" />
+            <End Role="Anagrafica1" EntitySet="Anagrafica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Anagrafica_IdPadre" Association="Self.FK_Anagrafica_IdPadre">
+            <End Role="Anagrafica" EntitySet="Anagrafica" />
+            <End Role="Anagrafica1" EntitySet="Anagrafica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Foto_Anagrafica" Association="Self.FK_Foto_Anagrafica">
+            <End Role="Anagrafica" EntitySet="Anagrafica" />
+            <End Role="Foto" EntitySet="Foto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartiSalti_Anagrafica" Association="Self.FK_PartiSalti_Anagrafica">
+            <End Role="Anagrafica" EntitySet="Anagrafica" />
+            <End Role="PartiSalti" EntitySet="PartiSalti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salti_PartiSalti" Association="Self.FK_Salti_PartiSalti">
+            <End Role="PartiSalti" EntitySet="PartiSalti" />
+            <End Role="Salti" EntitySet="Salti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salti_Anagrafica" Association="COWModel.FK_Salti_Anagrafica">
+            <End Role="Anagrafica" EntitySet="Anagrafica" />
+            <End Role="Salti" EntitySet="Salti" />
+          </AssociationSet>
+          <EntitySet Name="PrimaNota" EntityType="COWModel.PrimaNota" />
+          <EntitySet Name="VociPrimaNota" EntityType="COWModel.VociPrimaNota" />
+          <AssociationSet Name="FK_VociPrimaNota_PrimaNota" Association="COWModel.FK_VociPrimaNota_PrimaNota">
+            <End Role="PrimaNota" EntitySet="PrimaNota" />
+            <End Role="VociPrimaNota" EntitySet="VociPrimaNota" />
+          </AssociationSet>
+          
+        </EntityContainer>
+        <Association Name="FK_Salti_Anagrafica">
+          <End Type="COWModel.Anagrafica" Role="Anagrafica" Multiplicity="0..1" />
+          <End Type="COWModel.Salti" Role="Salti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anagrafica">
+              <PropertyRef Name="idAnagrafica" />
+            </Principal>
+            <Dependent Role="Salti">
+              <PropertyRef Name="idToro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PrimaNota">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Anno" Type="Int32" />
+          <Property Name="Data" Type="DateTime" Precision="3" />
+          <Property Name="Numero" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descrizione" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PagIncassata" Type="Boolean" />
+          <Property Name="IdFornitoreCliente" Type="Int32" />
+          <Property Name="Dare" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="Avere" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="ImporotIva" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="Note" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="VociPrimaNota" Relationship="COWModel.FK_VociPrimaNota_PrimaNota" FromRole="PrimaNota" ToRole="VociPrimaNota" />
+        </EntityType>
+        <EntityType Name="VociPrimaNota">
+          <Key>
+            <PropertyRef Name="IdVoce" />
+          </Key>
+          <Property Name="IdVoce" Type="Int32" Nullable="false" />
+          <Property Name="IdPrimaNota" Type="Int32" />
+          <Property Name="Descrizione" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Dare" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="Avere" Type="Decimal" Precision="12" Scale="4" />
+          <Property Name="Iva" Type="Decimal" Precision="3" Scale="2" />
+          <NavigationProperty Name="PrimaNota" Relationship="COWModel.FK_VociPrimaNota_PrimaNota" FromRole="VociPrimaNota" ToRole="PrimaNota" />
+        </EntityType>
+        <Association Name="FK_VociPrimaNota_PrimaNota">
+          <End Type="COWModel.PrimaNota" Role="PrimaNota" Multiplicity="0..1" />
+          <End Type="COWModel.VociPrimaNota" Role="VociPrimaNota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrimaNota">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VociPrimaNota">
+              <PropertyRef Name="IdPrimaNota" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+    
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="COWModelStoreContainer" CdmEntityContainer="CowBoyEntities">
+          <EntitySetMapping Name="Anagrafica">
+            <EntityTypeMapping TypeName="COWModel.Anagrafica">
+              <MappingFragment StoreEntitySet="Anagrafica">
+                <ScalarProperty Name="ToroArtificiale" ColumnName="ToroArtificiale" />
+                <ScalarProperty Name="idAnagrafica" ColumnName="idAnagrafica" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Madre" ColumnName="Madre" />
+                <ScalarProperty Name="Padre" ColumnName="Padre" />
+                <ScalarProperty Name="DataNascita" ColumnName="DataNascita" />
+                <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="ToroDaMonta" ColumnName="ToroDaMonta" />
+                <ScalarProperty Name="Sesso" ColumnName="Sesso" />
+                <ScalarProperty Name="MatricolaASL" ColumnName="MatricolaASL" />
+                <ScalarProperty Name="MatricolaAzienda" ColumnName="MatricolaAzienda" />
+                <ScalarProperty Name="idFiglio" ColumnName="idFiglio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Foto">
+            <EntityTypeMapping TypeName="COWModel.Foto">
+              <MappingFragment StoreEntitySet="Foto">
+                <ScalarProperty Name="DataInserimento" ColumnName="DataInserimento" />
+                <ScalarProperty Name="idFoto" ColumnName="idFoto" />
+                <ScalarProperty Name="idAnagrafica" ColumnName="idAnagrafica" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Principale" ColumnName="Principale" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartiSalti">
+            <EntityTypeMapping TypeName="COWModel.PartiSalti">
+              <MappingFragment StoreEntitySet="PartiSalti">
+                <ScalarProperty Name="Abortito" ColumnName="Abortito" />
+                <ScalarProperty Name="idPartoSalto" ColumnName="idPartoSalto" />
+                <ScalarProperty Name="idAnagrafica" ColumnName="idAnagrafica" />
+                <ScalarProperty Name="DataMessaAsciutta" ColumnName="DataMessaAsciutta" />
+                <ScalarProperty Name="DataParto" ColumnName="DataParto" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Naturale" ColumnName="Naturale" />
+                <ScalarProperty Name="Facile" ColumnName="Facile" />
+                <ScalarProperty Name="DaSola" ColumnName="DaSola" />
+                <ScalarProperty Name="PartoNoParto" ColumnName="PartoNoParto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salti">
+            <EntityTypeMapping TypeName="COWModel.Salti">
+              <MappingFragment StoreEntitySet="Salti">
+                <ScalarProperty Name="idSalto" ColumnName="idSalto" />
+                <ScalarProperty Name="idPartoSalto" ColumnName="idPartoSalto" />
+                <ScalarProperty Name="DataSalto" ColumnName="DataSalto" />
+                <ScalarProperty Name="idToro" ColumnName="idToro" />
+                <ScalarProperty Name="SaltoArtificiale" ColumnName="SaltoArtificiale" />
+                <ScalarProperty Name="MatrToroArt" ColumnName="MatrToroArt" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stati">
+            <EntityTypeMapping TypeName="COWModel.Stati">
+              <MappingFragment StoreEntitySet="Stati">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Stato" ColumnName="Stato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrimaNota">
+            <EntityTypeMapping TypeName="COWModel.PrimaNota">
+              <MappingFragment StoreEntitySet="PrimaNota">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="ImporotIva" ColumnName="ImporotIva" />
+                <ScalarProperty Name="Avere" ColumnName="Avere" />
+                <ScalarProperty Name="Dare" ColumnName="Dare" />
+                <ScalarProperty Name="IdFornitoreCliente" ColumnName="IdFornitoreCliente" />
+                <ScalarProperty Name="PagIncassata" ColumnName="PagIncassata" />
+                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Anno" ColumnName="Anno" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VociPrimaNota">
+            <EntityTypeMapping TypeName="COWModel.VociPrimaNota">
+              <MappingFragment StoreEntitySet="VociPrimaNota">
+                <ScalarProperty Name="Iva" ColumnName="Iva" />
+                <ScalarProperty Name="Avere" ColumnName="Avere" />
+                <ScalarProperty Name="Dare" ColumnName="Dare" />
+                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+                <ScalarProperty Name="IdPrimaNota" ColumnName="IdPrimaNota" />
+                <ScalarProperty Name="IdVoce" ColumnName="IdVoce" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram DiagramId="fa46bd143ca84e60a71133ca3539ca00" Name="Diagram1" ZoomLevel="78">
+        <EntityTypeShape EntityType="COWModel.Anagrafica" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="COWModel.Foto" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="COWModel.PartiSalti" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="COWModel.Salti" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="COWModel.Stati" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="COWModel.FK_Anagrafica_IdMadre" ManuallyRouted="false" />
+        <AssociationConnector Association="COWModel.FK_Anagrafica_IdPadre" ManuallyRouted="false" />
+        <AssociationConnector Association="COWModel.FK_Foto_Anagrafica" ManuallyRouted="false" />
+        <AssociationConnector Association="COWModel.FK_PartiSalti_Anagrafica" ManuallyRouted="false" />
+        <AssociationConnector Association="COWModel.FK_Salti_PartiSalti" ManuallyRouted="false" />
+        <AssociationConnector Association="COWModel.FK_Salti_Anagrafica" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="COWModel.PrimaNota" Width="1.5" PointX="5.375" PointY="7" />
+        <EntityTypeShape EntityType="COWModel.VociPrimaNota" Width="1.5" PointX="7.625" PointY="7.5" />
+        <AssociationConnector Association="COWModel.FK_VociPrimaNota_PrimaNota" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CowBoy.WEB_UI.Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gestione azienda bovini da latte" />
+    <meta name="author" content="Carlo Pallotta, Gabriele Movizzo" />
+    <title>CowBoy</title>
+    <%-- CSS  --%>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <%--<link href="css/datepicker.css" rel="stylesheet"/>--%>
+    <link href="css/lightbox.css" rel="stylesheet" />
+    <link href="css/vallenato.css" rel="stylesheet" />
+    <link href="css/jquery.ui.datepicker.css" rel="stylesheet" />
+    <link href="css/jquery-ui.css" rel="stylesheet" />
+
+
+
+
+    <%-- JAVASCRIPT  --%>
+    <%--<script src="script/jquery.ui.datepicker.js"></script>--%>
+    <%--<script src="script/jquery-ui.js"></script>--%>
+    <script src="script/jquery-1.10.2.js"></script>
+    <script src="script/jquery.ui.datepicker.js"></script>
+    <script src="script/jquery-ui.js"></script>
+    <script src="script/bootstrap.js"></script>
+    <%--<script src="script/bootstrap-datepicker.js"></script>--%>
+    <script src="script/lightbox-2.6.min.js"></script>
+    <script src="script/vallenato.js"></script>
+    <script src="script/function.js"></script>
+
+
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server" enctype="multipart/form-data" method="post">
+
+        <asp:ScriptManager runat="server" EnablePageMethods="True"></asp:ScriptManager>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="default.aspx">
+                        <img src="images/logo.png" alt="Logo" /></a>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
