@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CowBoy.UI", "CowBoy.UI\CowBoy.UI.csproj", "{C8BE4F6A-5247-4D3B-A44E-42CF2CC1561E}"
 EndProject
@@ -18,6 +18,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CowBoy.Library", "CowBoy.Library\CowBoy.Library.csproj", "{0B470D05-1DB2-4ADF-9A42-5D57A69F9A86}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{5BA6A245-409B-4964-A9D4-CCAC336EAA50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CowBoyWeb", "CowBoyWeb\CowBoyWeb.csproj", "{C38BAF90-CC62-4A50-91F4-69392C51DD44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CowBoyDataAccess", "CowBoyDataAccess\CowBoyDataAccess.csproj", "{96619543-B379-41A5-B13D-E1F5A4CF75A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CowBoyConnection", "CowBoyConnection\CowBoyConnection.csproj", "{33D076AA-09F6-439E-B10E-F2499D23F795}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CowBoyEntityDto", "CowBoyEntityDto\CowBoyEntityDto.csproj", "{7E3C78E1-52DE-44E2-87B8-1A6AA168B1DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,8 +65,27 @@ Global
 		{5BA6A245-409B-4964-A9D4-CCAC336EAA50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BA6A245-409B-4964-A9D4-CCAC336EAA50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BA6A245-409B-4964-A9D4-CCAC336EAA50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C38BAF90-CC62-4A50-91F4-69392C51DD44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C38BAF90-CC62-4A50-91F4-69392C51DD44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C38BAF90-CC62-4A50-91F4-69392C51DD44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C38BAF90-CC62-4A50-91F4-69392C51DD44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96619543-B379-41A5-B13D-E1F5A4CF75A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96619543-B379-41A5-B13D-E1F5A4CF75A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96619543-B379-41A5-B13D-E1F5A4CF75A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96619543-B379-41A5-B13D-E1F5A4CF75A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33D076AA-09F6-439E-B10E-F2499D23F795}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33D076AA-09F6-439E-B10E-F2499D23F795}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33D076AA-09F6-439E-B10E-F2499D23F795}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33D076AA-09F6-439E-B10E-F2499D23F795}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E3C78E1-52DE-44E2-87B8-1A6AA168B1DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E3C78E1-52DE-44E2-87B8-1A6AA168B1DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E3C78E1-52DE-44E2-87B8-1A6AA168B1DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E3C78E1-52DE-44E2-87B8-1A6AA168B1DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C953B3BD-07E0-4A04-AA92-6E28BE6746D6}
 	EndGlobalSection
 EndGlobal
