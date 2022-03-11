@@ -179,6 +179,16 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CowBoy.ComponentsNew\CowBoy.ComponentsNew.csproj">
+      <Project>{3c0aebbf-01fe-4a26-ad43-74039a252005}</Project>
+      <Name>CowBoy.ComponentsNew</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CowBoyEntityDto\CowBoyEntityDto.csproj">
+      <Project>{7e3c78e1-52de-44e2-87b8-1a6aa168b1da}</Project>
+      <Name>CowBoyEntityDto</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CowBoyEntityDto", "CowBoyEn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CowBoy.DataAccessNew", "CowBoy.DataAccessNew\CowBoy.DataAccessNew.csproj", "{768C9077-358C-4A7A-8595-09C25D81D37B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBWork", "..\AvalonNetworkNew\DBWork\DBWork.csproj", "{C6FE6D9B-328F-4C0B-9462-ABF0E2985C0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CowBoy.ComponentsNew", "CowBoy.ComponentsNew\CowBoy.ComponentsNew.csproj", "{3C0AEBBF-01FE-4A26-AD43-74039A252005}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,14 @@ Global
 		{768C9077-358C-4A7A-8595-09C25D81D37B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{768C9077-358C-4A7A-8595-09C25D81D37B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{768C9077-358C-4A7A-8595-09C25D81D37B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6FE6D9B-328F-4C0B-9462-ABF0E2985C0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6FE6D9B-328F-4C0B-9462-ABF0E2985C0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6FE6D9B-328F-4C0B-9462-ABF0E2985C0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6FE6D9B-328F-4C0B-9462-ABF0E2985C0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C0AEBBF-01FE-4A26-AD43-74039A252005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C0AEBBF-01FE-4A26-AD43-74039A252005}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C0AEBBF-01FE-4A26-AD43-74039A252005}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C0AEBBF-01FE-4A26-AD43-74039A252005}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
