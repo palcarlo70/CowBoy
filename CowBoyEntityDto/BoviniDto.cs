@@ -39,11 +39,25 @@ namespace CowBoyEntityDto
         public int? IdPadre { get; set; }
         public string MatricolaASLPadre { get; set; }
         public DateTime? DataNascita { get; set; }
+        public string DataNascitaStringa { get; set; }
         public DateTime? DataFine { get; set; }
+        public string DataFineStringa { get; set; }
         public string Note { get; set; }
         public int? IdParto { get; set; } //collegamento con il parto 
         public int? IdFoto { get; set; }
+        public int? ToroArtificiale { get; set; }
+        public int? ToroDaMonta { get; set; }
+        public string Sesso { get; set; }
         public string NomeFoto { get; set; }
         public int? FotoPrincipale { get; set; }
+        public DateTime? DataInAsciutta { get; set; }
+        public string DataInAsciuttaStringa { get; set; }
+        public DateTime? DataUltimoParto { get; set; }
+        public string DataUltimoPartoStringa { get; set; }
+        public int? MesiUltimoParto { get; set; }
+        public DateTime? UltimoSalto { get; set; }
+        public string UltimoSaltoStringa { get; set; }
+        public int? GiorniUltimoSalto { get; set; }
+       
     }
 }
