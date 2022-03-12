@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AvalonWeb.Models;
+using CowBoyWeb.Models;
 using Newtonsoft.Json;
 
 namespace CowBoyWeb.Controllers
