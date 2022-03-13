@@ -2,30 +2,299 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="panel panel-primary">
+        <div class="panel-heading clearfix" style="background-color: #d1dea8; padding-bottom: 0px;" id="divIntestazione">
+
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <div class="col-lg-8 col-md-8 col-sm-8">
+                    <input class="form-check-input" type="checkbox" id="stOrdPag_6" onclick="checkFiltriOrdini()"> <label class="form-check-label" for="stOrdPag_6" style="color:blue;">Annullato</label>  
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                   
+                </div>
+            </div>
+
+            <div class="col-lg-1 col-md-1 col-sm-1 panel-heading clearfix">
+                <h3 class="panel-title">
+                    <div class="btn-group pull-right" style="margin-top:-9px;">
+                        <button class="btn  btn-success dropdown-toggle" data-toggle="dropdown" style="font-size: 12px;">Gestionali <span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right" id="ulFilterEconomic" style="min-width: 220px;">
+                        </ul>
+                    </div>
+                </h3>
+            </div>
+
+
+
+            <div class="col-lg-2 col-md-2 col-sm-2" style="padding: 0px;">
+                <input type="text" name="criteria" class="form-control" placeholder="Ricerca Libera" id="txtRicercaOrdini">
+            </div>
+
+            <div class="col-lg-1 col-md-1 col-sm-1 ">
+                <button type="button" class="btn btn-success" style="background-color: #242042;" onclick="getOrdiniNew();"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+
+        </div>
+        <div class="panel-body" @*style="height: 300px; overflow-y: auto;"*@>
+            <div class="col-lg-4 col-md-4 col-sm-4" style="padding: 0px 5px 0px 0px;">
+                <table class="table table-striped table-bordered dt-responsive nowrap" id="dtGrdOrder2" style="font-size: 9px !important;">
+                    <thead>
+                        <tr style="font-size: 9pt !important;">
+                            <td class="text-center">Num.</td>
+                            <td class="text-center">Cliente</td>
+                            <td class="text-center">Stato</td>
+                            <td class="text-center">
+                                <i class="fa fa-square-o" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Ordine tutto da preparare"></i>
+                                <i class="fa fa-th" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Ordine parzialmene preparato"></i>
+                                <i class="fa fa-square" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Ordine preparato"></i>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-8 col-md-8 col-sm-8" style="padding: 0px; visibility: hidden; background-color: #f2f9e7; border-radius: 4px; border: 1px solid #92b1cc; " id="divDettaglioOrder">
+
+                <div class="col-lg-12 col-md-12 col-sm-12" style="padding: 0px; margin-bottom: 10px; background-color: #cac9c9; ">
+                    <div class="col-lg-3 col-md-3 col-sm-3" style="padding-left: 20px; padding-right: 0px;">
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6" style="padding: 0px;">
+                        <button class="btn btn-primary" onclick="PdfPrintOrdineVision(0)" id="btnPrintOrder"><i class="glyphicon glyphicon-print"></i></button>
+                        <button class="btn btn-primary" onclick="PdfPrintOrdineVision(1)" id="btnPrintOrderEng"><i class="glyphicon glyphicon-print">Foto</i></button>
+                        <button type="button" class="btn btn-success" style="background-color: #1d0aa9;" onclick="SalvaOrdineNew();"><i class="glyphicon glyphicon-floppy-disk"></i></button>
+                        <input class="btn btn-xs btn-success" id="btnSaveAndAddMagazzinoOrder" style="padding: 5px !important; visibility: inherit;" onclick="saveMoveMagaOrdine()" type="button" value="SALVA E SCARICA A MAGAZ.">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3" style="padding: 0px;">
+                        <button class="btn btn-info" onclick="PdfPrintArtDaSpedire()" id="btnPrintArtDaSpedire"><i class="glyphicon glyphicon-print"></i> Q.tà da Spedire</button>
+                    </div>
+                </div>
+                <div class="row" style="padding: 0px; margin-bottom: 10px;">
+                    <div class="col-lg-7 col-md-7 col-sm-7" style="padding: 0px;">
+
+
+                        <div class="col-lg-3 col-md-3 col-sm-3" style="padding: 0px;">
+                            <div class="col-lg-12 col-md-12 col-sm-12"
+                                <input type="hidden" id="hdIdOrdine" />
+
+                                <label for="lblNumeroOrdine">N.Ordine</label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12" @*style="max-height:160px; text-align:right;"*@>
+                                <h2 class="panel-title padFix"><span class="badge" style="background-color: #5cb85c;"><label id="lblNumeroOrdine" style="margin-top:5px; font-size:large;">20190023</label></span></h2>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <label for="txtDate">Data Ordine</label>
+                            <div class="input-group date" id="caldate" data-provide="datepicker">
+                                <input type="text" class="form-control dateFormat pointer" readonly id="txtDataOrdine" style="padding:0px;"><span class="input-group-addon" style="padding: 2px;"><i class="glyphicon glyphicon-th datepicker pointer"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5 col-md-5 col-sm-5" style="padding: 0px;">
+                            <label for="txtNumeroOrdineWeb">Num. Ordine Web</label>
+                            <input type="text" class="form-control " id="txtNumeroOrdineWeb" placeholder="" style="max-width: 98%; padding: 0px;">
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="row col-lg-12 col-md-12 col-sm-12" style="">
+                    <div class="col-lg-4 col-md-4 col-sm-4" style="padding: 5px;">
+                        <div class="dropdown-avatar ddlStatoGestionale">
+                            <label for="ddlStatoGestionale">Stato Gestionale</label>
+                            @*@Html.DropDownListFor(x => x.Ordine.StatoGestionale.IdStatoGest, Model.Ordine.StatoGestionale.StatoGestList, new { @id = "ddlStatoGestionale", @class = "form-control form-control-sm", style = " border-style:inset; width:100%; " })*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12" style="padding: 5px;">
+
+                    <input type="hidden" id="hdIdClienteOrd" />
+                    <label for="txtDescrizione">Cliente</label>
+                    <div class="input-group" style="width: 100%; padding-right: 10px; padding-left: 10px">
+                        <div class="form-control">
+                            <label id="lblClienteOrd"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12" role="group" style="padding: 0px; padding-top: 5px !important;">
+                    <div class="panel panel-default" style="margin-bottom: 5px; background-color: #f2f9e7;">
+                        <div class="panel-heading" style="padding-top: 0px; padding-bottom: 0px; background-color: #f2f9e7;">
+                            <button type="submit" data-toggle="collapse" data-target="#divSedeOrder" class="btn-text collapsed" style="background-color: gold"><span>Mostra</span><b>Chiudi</b></button>
+                            <label>Indirizzo Sede</label> <a href="#" onClick="apriModaleIndiOrdi(1)" style="position: absolute; right: 20px;"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="panel-body collapseSede" style="font-size: 10px;" id="divSedeOrder">
+                            <div class="col-lg-12 col-md-12 col-sm-12" style="padding: 0px;">
+                                <div class="col-lg-7 col-md-7 col-sm-7" style="padding: 0px;">
+                                    <label for="txtVia">Via</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtVia" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2" style="padding: 0px;">
+                                    <label for="txtCap">CAP</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtCap" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3" style="padding: 0px;">
+                                    <label for="txtCitta">Città</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtCitta" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2" style="padding: 0px;">
+                                    <label for="txtPv">PV</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtPv" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3" style="padding: 0px;">
+                                    <label for="txtCountry">Country</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtCountry" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3" style="padding: 0px;">
+                                    <label for="txtTele">Telefono</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtTele" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3" style="padding: 0px;">
+                                    <label for="txtCellulare">Cellulare</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtCellulare" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3" style="padding: 0px;">
+                                    <label for="txtEmail">E-Mail</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtEmail" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3" style="padding: 0px;">
+                                    <label for="txtReferente">Referente</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtReferente" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12" role="group" style="padding: 0px; ">
+                    <div class="panel panel-default" style="margin-bottom: 5px; background-color: #d5ffdc;">
+                        <div class="panel-heading" style="padding-top: 0px; padding-bottom: 0px;  background-color: #d5ffdc;">
+                            <button type="submit" data-toggle="collapse" data-target="#divDestinazione" class="btn-text collapsed" style="background-color: gold"><span>Mostra</span><b>Chiudi</b></button>
+                            <label>Indirizzo Spedizione</label> <a href="#" onClick="apriModaleIndiOrdi(2)" style="position:absolute; right:20px;"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="panel-body collapseSpedizione" style="font-size: 10px;" id="divDestinazione">
+                            <div class="col-lg-12 col-md-12 col-sm-12" style="padding: 0px;">
+                                <div class="col-lg-5 col-md-5 col-sm-5" style="padding: 0px;">
+                                    <label for="txtDestina">Destinatario</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtDestina" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                                <div class="col-lg-7 col-md-7 col-sm-7" style="padding: 0px;">
+                                    <label for="txtViaDest">Via</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtViaDest" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2" style="padding: 0px;">
+                                    <label for="txtCapDest">CAP</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtCapDest" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3" style="padding: 0px;">
+                                    <label for="txtCittaDest">Città</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtCittaDest" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2" style="padding: 0px;">
+                                    <label for="txtPvDest">PV</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtPvDest" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3" style="padding: 0px;">
+                                    <label for="txtCountryDest">Country</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtCountryDest" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3" style="padding: 0px;">
+                                    <label for="txtTeleDest">Telefono</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtTeleDest" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3" style="padding: 0px;">
+                                    <label for="txtEmailDest">E-Mail</label>
+                                    <input type="text" class="form-control txtMiniHeight" id="txtEmailDest" placeholder="" style="max-width: 98%; padding: 0px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12" role="group" style="padding: 0px; padding-top: 5px !important;">
+                    <div class="panel panel-default" style="margin-bottom: 5px; background-color: #fbf1ef;">
+                        <div class="panel-heading" style="padding-top: 0px; padding-bottom: 0px; background-color: #fbf1ef;">
+                            <button type="submit" data-toggle="collapse" data-target="#divImballi" class="btn-text collapsed" style="background-color: gold"><span>Mostra</span><b>Chiudi</b></button>
+                            <label>Imballi</label>
+                            <label id="lblNumImballi" style="position: absolute; right: 20px;">0</label>
+                        </div>
+                        <div class="panel-body collapseImballi" style="font-size: 10px; padding: 1px;" id="divImballi">
+                            <div class="col-lg-5 col-md-5 col-sm-5" style="padding: 0px;">
+                                <div class="panel-body" style="height: 390px; overflow-y: auto; padding:0px;">
+                                    <table class="table  table-striped table-bordered dt-responsive nowrap" id="dtGridTipoImballi" style="font-size: 9px !important;">
+                                        <thead>
+                                            <tr style="font-size: 9pt !important;">
+                                                <td class="text-center" style="width: 5px;"></td>
+                                                <td class="text-center">Cod</td>
+                                                <td class="text-center">Descrizione</td>
+                                                <td class="text-center" style="font-size: 10px;">Formato</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7" style="padding: 0px;">
+                                <div class="panel-body" style="height: 390px; overflow-y: auto; padding: 0px; padding-left: 5px;">
+                                    <table class="table  table-striped table-bordered dt-responsive nowrap" id="dtGridVociImballi" style="font-size: 9px !important;">
+                                        <thead>
+                                            <tr style="font-size: 9pt !important;">
+                                                <td class="text-center" style="width: 5px;"></td>
+                                                <td class="text-center" style="width: 10%;">Codice</td>
+                                                <td class="text-center" style="width: 40%;">Descrizione</td>
+                                                <td class="text-center" style="width: 10%;">Formato</td>
+                                                <td class="text-center" style="width: 15px;">Kg</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-12 col-md-12 col-sm-12" style="padding-top: 5px; text-align: center; visibility: hidden;" id="divVociOrdine">
+                    <div class="row" role="group" style="padding-top: 5px;">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" id="pnlVociOrdine">
+                                <div class="row">
+                                    <div class="col-sm-3" id="draggable">
+                                        <h2 class="panel-title padFix">Voci Articoli <span class="badge"><label id="lblRecordVocOrd" style="margin-top:5px;"></label></span></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body" style="height: 390px; overflow-y: auto; padding:0px;">
+                                <table class="table  table-striped table-bordered dt-responsive nowrap" id="dtGridVociOrdine" style="font-size: 9px !important;">
+                                    <thead>
+                                        <tr style="font-size: 9pt !important;">
+                                            <td class="text-center" style="width: 80px;">Articolo</td>
+                                            <td class="text-center" style="width: 45%;">Descrizione</td>
+                                            <td class="text-center" style="width: 47px;">U.M.</td>
+                                            <td class="text-center" style="width: 37px;">Q.tà ordinata</td>
+                                            <td class="text-center" style="width: 37px;" data-toggle="tooltip" data-placement="top" title="Quantità scaricate dal magazzino">Sc. Magaz</td>
+                                            <td class="text-center" style="width: 37px;">
+                                                <a onclick="CopiaQuantitaDaCaricareInMagaOrVs()" data-toggle="tooltip" data-placement="top" title="Copia le quantità da caricare a magazzino come preparate" href="#"><i class="fa fa-files-o fa-lg"></i>Carica</a> @*CopiaQuantitaDaCaricareInMaga()*@
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

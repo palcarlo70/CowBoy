@@ -13,9 +13,6 @@ namespace CowBoyWeb.Controllers
         readonly JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
         public ActionResult Index()
         {
-            var clCom = new ClassiComuni();
-            var conn = new CowBoy.ComponentsNew.BoviniCom();
-            var lst = conn.GetBovini(null,null,null,null,null,null,null, clCom.ConnectCbUniversal);
 
             return View();
         }
