@@ -34,6 +34,14 @@ function popolaBovini() {
     //var tipoOrdineOffertaFatt = $("#hdTipoOrdineOffertaFatt").val();
     //var statoOrdine = ""; var statoOrdPag = "";
     //PuliDettaglioOrdine();
+    /*ckFemmina
+      ckMaschi    
+      ckManze     
+      ckLattazione
+      ckAsciutta  
+      ckVendute   
+     */
+
 
     //var filtroText = $("#txtRicercaOrdini").val();
     //$("input.filtriStatoOrd:checked").each(function () {
@@ -49,24 +57,30 @@ function popolaBovini() {
 
     //if (idOrdine === undefined || idOrdine === null) {
     //    $("#dtGrdOrder").find("tr:not(:first)").remove(); //Pulizia della griglia
-    //    $("#lblNumRecordOrder").html("0");
+    //    
     //}
+    //if ()
 
     var pidAnagrafica = null;
-    var psesso = null;
+    var psesso = '';
     var pmanze = null;
     var pinLattazione = null;
-    var pinAsciutta = null;
-    var pricercaLibera = null;
+    var pinAsciutta = null;    
     var pinAzienda = null;
+    var pricercaLibera = $("#txtRicercaLibera").val();
+    if ($('#ckFemmina').is(':checked')) psesso = 'F;';
+    if ($('#ckMaschi').is(':checked')) psesso += 'M';
+    if ($('#ckManze').is(':checked')) pmanze = 1;
+    if ($('#ckLattazione').is(':checked')) pinLattazione = 1;
+    if ($('#ckAsciutta').is(':checked')) pinAsciutta = 1;
+    if ($('#ckVendute').is(':checked')) pinAzienda = 0;
 
-
-
+    $("#lblNumRecordBovini").html("0");
     //GetBovini(int ? idAnagrafica, string sesso, int ? manze, int ? inLattazione, int ? inAsciutta, string ricercaLibera, int ? inAzienda) ../home/
     //'@Url.Action("GetBovini", "home")',
     var conta = 0;
     $.ajax({
-        url: "home/GetBovini",
+        url: "GetBovini",
         type: "POST",
         async: true,
         dataType: "json",
@@ -98,14 +112,14 @@ function popolaBovini() {
 
             $("#" + griglia).find("tr:not(:first)").remove(); //Pulizia della griglia
 
-            //if (value !== null) $("#lblNumRecordOrder").html(value.length);
+            if (value !== null) $("#lblNumRecordBovini").html(value.length);
             var fatEmessa
             $.each(value, function (index, pos) {
             try {
                 var td;
 
-                trParo = "<tr class=\"gradeAmat odd text-center rigaSelect" + conta + "\" role=\"row\" style=\"font-size: 8pt !important;\" >";
-                trDisp = "<tr class=\"gradeAmat odd text-center rigaSelect" + conta + "\" role=\"row\" style=\"font-size: 8pt !important;\">";
+                trParo = "<tr class=\"gradeBTmb gradeA odd text-center rigaSelTimbroTutte" + conta + "\" role=\"row\" style=\"font-size: 10pt !important;\" >";
+                trDisp = "<tr class=\"gradeBTmb gradeB odd text-center rigaSelTimbroTutte" + conta + "\" role=\"row\" style=\"font-size: 10pt !important;\">";
 
                 td = trParo;
 
@@ -114,7 +128,7 @@ function popolaBovini() {
 
                 //fatEmessa = pos.FattEmessa === 1 ? "<h5 class=\"panel-title\" style=\"color: green;\"> <i class=\"fa fa-check\"></i> </span></h5>" : "";
 
-                rigap = td + tdLeft + "<a href=\"#\" onClick=\"getOrdiniSelectRow('" + pos.Id + "','rigaSelect" + conta + "')\" >" + pos.MatricolaAsl + "</a>" + tdCl +
+                rigap = td + tdCenter + "<a href=\"#\" onClick=\"getOrdiniSelectRow('" + pos.Id + "','rigaSelect" + conta + "')\" >" + pos.MatricolaAsl + "</a>" + tdCl +
                     tdCenter + pos.DataNascitaStringa + tdCl +
                     tdCenter + pos.Sesso + tdCl +
                     tdCenter + pos.DataUltimoPartoStringa + tdCl +
@@ -145,3 +159,7 @@ function popolaBovini() {
 
 }
 
+function cercaText(txt) {
+    //if ($("#txtRicercaLibera").val().length > 3)
+        popolaBovini();
+}
