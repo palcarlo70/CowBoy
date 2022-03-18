@@ -36,5 +36,14 @@ namespace CowBoyWeb.Controllers
             var lst = conn.GetBovini(idAnagrafica, sesso, manze, inLattazione, inAsciutta, ricercaLibera, inAzienda, clCom.ConnectCbUniversal);
             return Content(JsonConvert.SerializeObject(lst, _jsonSetting), "application/json");
         }
+
+        public ContentResult GetProssimiSaltiAsciutteParti()
+        {
+            var clCom = new ClassiComuni();
+            var conn = new CowBoy.ComponentsNew.BoviniCom();
+            var lst = conn.GetProssimiSaltiAsciutteParti(clCom.ConnectCbUniversal);
+            return Content(JsonConvert.SerializeObject(lst, _jsonSetting), "application/json");
+        }
+
     }
 }

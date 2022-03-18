@@ -57,7 +57,46 @@ namespace CowBoyEntityDto
         public int? MesiUltimoParto { get; set; }
         public DateTime? UltimoSalto { get; set; }
         public string UltimoSaltoStringa { get; set; }
-        public int? GiorniUltimoSalto { get; set; }
-       
+        public int? GiorniUltimoSalto { get; set; }       
     }
+
+    public class ProssimiEventi
+    {
+        public List<BoviniCoprireDto> BoviniCoprire { get; set; }
+        public List<BoviniDaAsciuttaDto> BoviniDaAsciutta { get; set; }
+        public List<BoviniDaPartorireDto> BoviniDaPartorire { get; set; }
+    }
+
+    public class BoviniCoprireDto
+    {
+        public int? Id { get; set; }
+        public string MatricolaAsl { get; set; }        
+        public DateTime? DataNascita { get; set; }
+        public string DataNascitaStringa { get; set; }
+        public int EtaMesi { get; set; }
+        public DateTime? DataUltimoParto { get; set; }
+        public int GiorniUltimoParto { get; set; }
+        public int ManzaVacca { get; set; } //0 AS Manza
+    }
+
+    public class BoviniDaAsciuttaDto
+    {
+        public int? Id { get; set; }
+        public string MatricolaAsl { get; set; }
+        public DateTime? DataNascita { get; set; }
+        public string DataNascitaStringa { get; set; }
+        public DateTime? DataMessaInAsciutta { get; set; }
+        public string DataMessaInAsciuttaStringa { get; set; }
+    }
+
+    public class BoviniDaPartorireDto
+    {
+        public int? Id { get; set; }
+        public string MatricolaAsl { get; set; }
+        public DateTime? DataNascita { get; set; }
+        public string DataNascitaStringa { get; set; }
+        public DateTime? DataParto { get; set; }
+        public string DataPartoStringa { get; set; }
+    }
+
 }

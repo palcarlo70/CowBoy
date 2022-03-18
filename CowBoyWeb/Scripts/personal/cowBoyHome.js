@@ -1,65 +1,11 @@
 ﻿
 $(function () {
     popolaBovini();
-    //popolaReparti("ddlReparto", "ddlAzienda");
-
-    //CercaUtenti();
-
-    //popolaAzienda("ddlUteAziendaModal");
-    //popolaReparti("ddlUteRepartoModal", "ddlUteAziendaModal");
-    //popolaContratti("ddlUteContrattoModal");
-    //popolaOperazioni("ddlUteOperazione");
-
-
-    //$("#txtUteNewPass").keyup(function () {
-    //    CheckPass();
-    //});
-    //$("#txtUteConfPass").keyup(function () {
-    //    CheckPass();
-    //});
-
-    //$("#ddlAzienda").change(function () {
-    //    popolaReparti("ddlReparto", "ddlAzienda");
-    //});
-
-    //$("#ddlUteAziendaModal").change(function () {
-    //    popolaReparti("ddlUteRepartoModal", "ddlUteAziendaModal");
-    //});
-
-    //popolaProfiliOrari();
+    popolaProssimiEventi();
 });
 
 
-function popolaBovini() {
-    //var tipoOrdineOffertaFatt = $("#hdTipoOrdineOffertaFatt").val();
-    //var statoOrdine = ""; var statoOrdPag = "";
-    //PuliDettaglioOrdine();
-    /*ckFemmina
-      ckMaschi    
-      ckManze     
-      ckLattazione
-      ckAsciutta  
-      ckVendute   
-     */
-
-
-    //var filtroText = $("#txtRicercaOrdini").val();
-    //$("input.filtriStatoOrd:checked").each(function () {
-    //    if (statoOrdine !== "") statoOrdine += ";";
-    //    statoOrdine += $(this).attr("id").replace("stOrd_", "");
-    //});
-
-    //$("input.filtriStatoOrdPag:checked").each(function () {
-    //    statoOrdPag += $(this).attr("id").replace("stOrdPag_", "") + ";";
-    //});
-
-    //if (idOrdine === "") idOrdine = null;
-
-    //if (idOrdine === undefined || idOrdine === null) {
-    //    $("#dtGrdOrder").find("tr:not(:first)").remove(); //Pulizia della griglia
-    //    
-    //}
-    //if ()
+function popolaBovini() {   
 
     var pidAnagrafica = null;
     var psesso = '';
@@ -80,7 +26,7 @@ function popolaBovini() {
     //'@Url.Action("GetBovini", "home")',
     var conta = 0;
     $.ajax({
-        url: "GetBovini",
+        url: "home/GetBovini",
         type: "POST",
         async: true,
         dataType: "json",
@@ -162,4 +108,122 @@ function popolaBovini() {
 function cercaText(txt) {
     //if ($("#txtRicercaLibera").val().length > 3)
         popolaBovini();
+}
+
+function popolaProssimiEventi() {
+    //
+    $.ajax({
+        url: "home/GetProssimiSaltiAsciutteParti",
+        type: "POST",
+        async: true,
+        dataType: "json",
+        data: {            
+        },
+        success: function (value) {
+            var trParo = "<tr class=\"gradeA odd text-center\" role=\"row\" style=\"font-size: 9pt !important;\" >";
+            var trDisp = "<tr class=\"gradeA odd text-center\" role=\"row\" style=\"font-size: 9pt !important;\">";
+
+            var conta = 0;
+
+            var tdOpFontMini = "<td class=\"text-left\" style=\"vertical-align: middle;padding: 0 !important;font-size: 8pt !important;\">";
+            var tdOp = "<td class=\"text-left\" style=\"vertical-align: middle;padding: 0 !important;\">";
+            var tdLeft = "<td class=\"text-left\" style=\"vertical-align: middle;padding: 0 !important;\">";
+            var tdRight = "<td class=\"text-right\" style=\"vertical-align: middle;padding: 0 !important;\">";
+            var tdCenter = "<td class=\"text-center\" style=\"vertical-align: middle;padding: 0 !important;\">";
+            var tdCl = "</td>";
+            var rigap = "";
+
+            var griglia = "dtGrdProssimiSalti";
+            $("#" + griglia).find("tr:not(:first)").remove(); //Pulizia della griglia
+
+            if (value.BoviniCoprire !== null) { $("#lblNumRecordProssimiSalti").html(value.BoviniCoprire.length); } else { $("#lblNumRecordProssimiSalti").html(0); } //NumRecord
+            
+            $.each(value.BoviniCoprire, function (index, pos) {
+                try {
+                    var td;
+
+                    trParo = "<tr class=\"gradeBTmb gradeA odd text-center rigaSelTimbroPE" + conta + "\" role=\"row\" style=\"font-size: 10pt !important;\" >";
+                    trDisp = "<tr class=\"gradeBTmb gradeB odd text-center rigaSelTimbroPE" + conta + "\" role=\"row\" style=\"font-size: 10pt !important;\">";
+
+                    td = trParo;
+
+                    if (index % 2 === 1)
+                        td = trDisp;
+
+                    rigap = td + tdCenter + "<a href=\"#\" onClick=\"getOrdiniSelectRow('" + pos.Id + "','rigaSelect" + conta + "')\" >" + pos.MatricolaAsl + "</a>" + tdCl +
+                        tdCenter + pos.EtaMesi + tdCl +
+                        tdCenter + pos.GiorniUltimoParto + tdCl +
+                        tdCenter + pos.ManzaVacca + tdCl +
+                        + "</tr>";
+                    $("#" + griglia + " tbody").append(rigap);
+                } catch (e) {
+                    alert(e);
+                }
+                conta += 1;
+            });
+
+            griglia = "dtGrdProssimiParti";
+            $("#" + griglia).find("tr:not(:first)").remove(); //Pulizia della griglia
+
+            if (value.BoviniDaPartorire !== null) { $("#lblNumRecordProssimiParti").html(value.BoviniDaPartorire.length); } else { $("#lblNumRecordProssimiParti").html(0); } //NumRecord
+
+            $.each(value.BoviniDaPartorire, function (index, pos) {
+                try {
+                    var td;
+
+                    trParo = "<tr class=\"gradeBTmb gradeA odd text-center rigaSelTimbroPE" + conta + "\" role=\"row\" style=\"font-size: 10pt !important;\" >";
+                    trDisp = "<tr class=\"gradeBTmb gradeB odd text-center rigaSelTimbroPE" + conta + "\" role=\"row\" style=\"font-size: 10pt !important;\">";
+
+                    td = trParo;
+
+                    if (index % 2 === 1)
+                        td = trDisp;
+                    rigap = td + tdCenter + "<a href=\"#\" onClick=\"getOrdiniSelectRow('" + pos.Id + "','rigaSelect" + conta + "')\" >" + pos.MatricolaAsl + "</a>" + tdCl +
+                        tdCenter + pos.DataPartoStringa + tdCl +
+                        + "</tr>";
+                    $("#" + griglia + " tbody").append(rigap);
+                } catch (e) {
+                    alert(e);
+                }
+                conta += 1;
+            });
+
+            griglia = "dtGrdProssimeAsciutte";
+            $("#" + griglia).find("tr:not(:first)").remove(); //Pulizia della griglia
+
+            if (value.BoviniDaAsciutta !== null) { $("#lblNumRecordProssimeAsciutte").html(value.BoviniDaAsciutta.length); } else { $("#lblNumRecordProssimeAsciutte").html(0); } //NumRecord
+
+            $.each(value.BoviniDaAsciutta, function (index, pos) {
+                try {
+                    var td;
+
+                    trParo = "<tr class=\"gradeBTmb gradeA odd text-center rigaSelTimbroPE" + conta + "\" role=\"row\" style=\"font-size: 10pt !important;\" >";
+                    trDisp = "<tr class=\"gradeBTmb gradeB odd text-center rigaSelTimbroPE" + conta + "\" role=\"row\" style=\"font-size: 10pt !important;\">";
+
+                    td = trParo;
+
+                    if (index % 2 === 1)
+                        td = trDisp;
+                    /*Id = Convert.ToInt32(dr["idAnagrafica"].ToString()),
+                           MatricolaAsl = dr["MatricolaASL"].ToString(),
+                           DataNascita = !dr.IsNull("DataNascita") ? DateTime.Parse(dr["DataNascita"].ToString()) : (DateTime?)null,
+                           DataNascitaStringa = !dr.IsNull("DataNascita") ? DateTime.Parse(dr["DataNascita"].ToString()).ToString("dd/MM/yy") : string.Empty,
+                           DataMessaInAsciutta = !dr.IsNull("DataMessaInAsciutta") ? DateTime.Parse(dr["DataMessaInAsciutta"].ToString()) : (DateTime?)null,
+                           DataMessaInAsciuttaStringa = !dr.IsNull("DataMessaInAsciutta") ? DateTime.Parse(dr["DataMessaInAsciutta"].ToString()).ToString("dd/MM/yy") : string.Empty*/
+
+                    rigap = td + tdCenter + "<a href=\"#\" onClick=\"getOrdiniSelectRow('" + pos.Id + "','rigaSelect" + conta + "')\" >" + pos.MatricolaAsl + "</a>" + tdCl +
+                        tdCenter + pos.DataMessaInAsciuttaStringa + tdCl +
+                        + "</tr>";
+                    $("#" + griglia + " tbody").append(rigap);
+                } catch (e) {
+                    alert(e);
+                }
+                conta += 1;
+            });
+
+        },
+        failure: function () {
+            alert("Failed!");
+        }
+    });
 }
