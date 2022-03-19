@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="panel panel-primary">
-        <div class="panel-heading clearfix" style="background-color: #d1dea8; padding-bottom: 0px;" id="divIntestazione">           
+        <div class="panel-heading clearfix" style="background-color: #d1dea8; padding-bottom: 0px; padding-top: 2px;" id="divIntestazione">
             <div class="col-lg-7 col-md-7 col-sm-7" style="padding:0px;">
                 <input class="form-check-input" type="checkbox" id="ckFemmina" onclick="popolaBovini()"> <label class="form-check-label" for="ckFemmina" style="color:blue; margin-right:5px;">Femmine</label>
                 <input class="form-check-input" type="checkbox" id="ckMaschi" onclick="popolaBovini()"> <label class="form-check-label" for="ckMaschi" style="color:blue; margin-right:5px;">Maschi</label>
@@ -19,7 +19,10 @@
             <div class="col-lg-1 col-md-1 col-sm-1 ">
                 <button type="button" class="btn btn-success" style="background-color: #242042; padding: 2px 4px;" onclick="popolaBovini();"><i class="glyphicon glyphicon-search" style="font-size:12px;"></i></button>
             </div>
-
+            @*<div class="pull-right" id="btnNewBovino">*@
+            <div class="col-lg-2 col-md-2 col-sm-2" style="padding: 0px;">
+                <button class="btn btn-primary" style="border-radius: 15px; outline: none; padding: 3px 12px;" onclick="NewBovino()">Nuovo Bovino</button>
+            </div>
         </div>
         <div class="panel-body" style="height: 300px; overflow-y: auto;">
             <div class="col-lg-12 col-md-12 col-sm-12" style="padding: 0px 5px 0px 0px;">

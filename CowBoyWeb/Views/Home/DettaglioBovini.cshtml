@@ -1,0 +1,203 @@
+﻿
+@{
+    ViewBag.Title = "DettaglioBovini";
+}
+
+<h2>DettaglioBovini</h2>
+
+
+<div class="row">
+    <div class="panel panel-primary"></div>
+    <div class="col-lg-12 col-md-12 col-sm-12" style="padding:0px; min-height:660px; margin-bottom:15px">       
+
+        <div class="col-lg-12 col-md-12 col-sm-12" style="border-left: 2px solid #337ab7; padding-left:7.5px; padding-right:0px; min-height:620px">
+           
+            @*<div class="col-lg-2 col-md-2 col-sm-2" style="padding:0px">
+                <div class="pull-right">
+                    <button class="btn btn-primary" onclick="InsUpdUtente()" style="border-radius:20px; outline:none">Salva</button>
+                    <button class="btn btn-danger" onclick="ChiudiDettUte(true)" style="border-radius:20px; outline:none">Chiudi</button>
+                </div>
+            </div>*@
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <ul class="nav nav-tabs" role="tablist" style="margin-top:15px; font-size:15px">
+                    <li class="nav-item active">
+                        <a class="nav-link active" data-toggle="tab" href="#home">Dati Bovino</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#lavoro">Scheda Parti</a>
+                    </li>
+                    @*<li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabProfilOrario">Profili Orario</a>
+                    </li>*@
+                </ul>
+                <div class="tab-content" style=" margin-top: 15px">
+                    <div id="home" class="container tab-pane active" style="width:100%;">
+                        <div class="col-lg-4 col-md-4 col-sm-4" style="padding-left:0px; padding-right:35px">
+                            <div class="form-group">
+                                <label for="txtUteCognome">Matricola USL</label>
+                                <input type="text" class="form-control bluGrassetto" id="txtMatricolaUsl" placeholder="Matricola USL" />
+                            </div>
+                            <div class="form-group">
+                                <label for="txtMatrAz">Matricola Az.</label>
+                                <input type="text" class="form-control bluGrassetto" id="txtMatrAz" placeholder="Matr. Interna" />
+                            </div>
+                            <div class="form-group">
+                                <label for="txtNome">Nome</label>
+                                <input type="text" class="form-control bluGrassetto" id="txtNome" placeholder="Nome" />
+                            </div>
+                            <div class="form-group" style="width:150px;">
+                                <label for="txtDataNascita">Data Nascita</label>
+                                <div class="input-group date" id="caldate" data-provide="datepicker">
+                                    <input type="text" class="form-control dateFormat pointer bluGrassetto closeDateSelect" readonly id="txtDataNascita" style="background: white; text-align: center; font-size: 18px;"><span class="input-group-addon" style="padding: 2px; background: white"><i class="glyphicon glyphicon-th pointer" style="padding:4px;"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group" style="width:150px;">
+                                <label for="txtDataUscita">Data Uscita</label>
+                                <div class="input-group date" id="caldate" data-provide="datepicker">
+                                    <input type="text" class="form-control dateFormat pointer bluGrassetto closeDateSelect" readonly id="txtDataUscita" style="background: white; text-align: center; background-color: #f5e6e6; font-size:18px;"><span class="input-group-addon" style="padding: 2px; background: white"><i class="glyphicon glyphicon-th pointer" style="padding:4px;"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtCercaMadre">Padre</label>
+                                <input name="txtCercaMadre" type="text" autocomplete="off" id="txtCercaMadre" class="txtBoxesInsert txtWidt180Max" placeholder="Matr. USL madre" onclick="cercaBoviniFemmine();">
+                                <a onclick="DeleteTxtMatricola(document.getElementById('ContentPlaceHolder1_txtCercaMadre'));">
+                                    <img src="~/img/Icon/DeleteRed_mini.png" alt="X" onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor='default'" style="cursor: default;">
+                                </a>
+                                <a onclick="clickSerchMatricola('F');">
+                                    <img src="~/img/Icon/find.gif" alt="O" onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor='default'" style="cursor: default;">
+                                </a>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtCercaPadre">Padre</label>
+                                <input name="txtCercaPadre" type="text" autocomplete="off" id="txtCercaPadre" class="txtBoxesInsert txtWidt180Max" placeholder="Matr. USL padre" onclick="cercaBoviniMaschi();">
+                                <a onclick="DeleteTxtMatricola(document.getElementById('ContentPlaceHolder1_txtCercaPadre'));">
+                                    <img src="~/img/Icon/DeleteRed_mini.png" alt="X" onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor='default'" style="cursor: default;">
+                                </a>
+                                <a onclick="clickSerchMatricola('M');">
+                                    <img src="~/img/Icon/find.gif" alt="O" onmouseover="this.style.cursor='pointer'" onmouseout="this.style.cursor='default'" style="cursor: default;">
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4" style="padding-left: 0px; padding-right: 35px">
+                            <div class="col-lg-12 col-md-12 col-sm-12" style="padding:0px;">                                
+                                <img src="null" class="" width="240" height="240" id="imgBov" onerror="this.src='../img/FotoBov/imgNull.png'" />
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12" style="padding:0px">
+                                <h2 class="bluGrassetto" id="txtUteMatricola" style="display: inline"></h2>
+                                <div class="form-group" style="margin-top: 15px">
+                                    <label for="utePathImg">
+                                        Percorso Foto
+                                        <span style="cursor: pointer; color: #337ab7" onclick="ChangeNewImage()" title="Carica anteprima immagine">
+                                            <i class="fa fa-upload" style="margin-left:10px; font-size:17px"></i>
+                                        </span>
+                                        <span style="cursor: pointer; color: #337ab7" onclick="ApriPopUpNewImage()" title="Carica nuova immagine">
+                                            <i class="fa fa-plus" style="margin-left:10px; font-size:17px"></i>
+                                        </span>
+                                    </label>
+                                    <input type="text" class="form-control" id="txtBovPathImg" style="width:240px;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="lavoro" class="container tab-pane fade" style="width:100%">
+                        <div class="col-lg-12 col-md-12 col-sm-12" style="padding: 0px; text-align: right;">
+                            <button class="btn btn-info" onclick="OpenUteMovPopup(null)" style="border-radius:20px; outline:none">Nuova Informazione</button>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12" style="padding:0px">
+                            <div class="table-responsive" style="max-height:400px; overflow-y:auto">
+                                <table class="table table-hover table-responsive" id="gridUteStorico">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">
+                                                Num
+
+                                            </th>
+                                            <th scope="col">Data</th>
+                                            <th scope="col">Operazione</th>
+                                            <th scope="col">Tipo Contratto</th>
+                                            <th scope="col">Azienda</th>
+                                            <th scope="col">Reparto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div id="tabProfilOrario" class="container tab-pane fade" style="width:100%">
+                        <div class="col-lg-12 col-md-12 col-sm-12" style="padding: 0px; text-align: right;">
+                            <button class="btn btn-info" onclick="OpenModaleProfilo('','',1,1,1,1,1,1,'00:00','00:00','00:00','00:00','','','',0,'')" style="border-radius:20px; outline:none">Nuovo Profilo Orario</button>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12" style="padding:0px">
+                            <div class="table-responsive" style="max-height:400px; overflow-y:auto">
+                                <table class="table table-striped table-bordered dt-responsive nowrap" id="dtGridProfileOraUte" style="font-size: 12px !important;">
+                                    <thead>
+                                        <tr style="font-size: 9pt !important;">
+                                            <td class="text-center">PROFILO</td>
+                                            <td class="text-center">DAL</td>
+                                            <td class="text-center">V.E</td>
+                                            <td class="text-center">V.P</td>
+                                            <td class="text-center">V.S</td>
+                                            <td class="text-center">V.F</td>
+                                            <td class="text-center" data-toggle="tooltip" data-placement="top" title="Vincolo Trim 15 minuti = L'orario di entrata e di uscita viene arrotondato al quarto d'ora successivo in caso di entrata o precedente in caso di uscita">V.T</td>
+                                            <td class="text-center" data-toggle="tooltip" data-placement="top" title="Vincolo Trim 30 minuti = Solo l'orario di ingresso sia in entrata che in uscita, qual'ora sia sforato di 5 minuti l'orario ufficiale,viene posticipato di 30 miuti">V.TT</td>
+                                            <td class="text-center">ENT</td>
+                                            <td class="text-center">USC</td>
+                                            <td class="text-center">ENT</td>
+                                            <td class="text-center">USC</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<script src="~/Scripts/personal/dettaglioBovino.js"></script>
+
+<div class="modal fade" id="modalBovNewImagePopUp" tabindex="-1" role="dialog" aria-labelledby="modalBovNewImagePopUp" style="z-index: 99999999; opacity: 2 " aria-hidden="true">
+    <div class="modal-dialog" style="transform: translate(-18%, 25%);">
+        <div class="modal-content" style="width: 330px; min-height:300px;">
+            <div class="modal-header">
+                <div class="row" style="margin:0px">
+                    <h3>Carica Immagine</h3>
+                </div>
+            </div>
+            <div class="modal-body" style="padding:3px;">
+                <div class="panel-body" style="padding: 0px;">
+                    <div class="row" style="margin:0px">
+                        <div class="image-upload">
+                            @*<button type="button" class="btn btn-success" style="background-color: #242042; padding: 2px 4px;" onclick="popolaBovini();"><i class="glyphicon glyphicon-search" style="font-size:12px;"></i></button>
+                            <button class="btn btn-primary" style="border-radius: 15px; outline: none; padding: 3px 12px;" onclick="NewBovino()">Nuovo Bovino</button>*@
+                            <input type="file" accept="image/*" id="inputNewImage" style="display:none" />
+                            <label class="btn btn-success" for="inputNewImage" id="labelFileUp" style="font-size:16px;"><i class="fa fa-upload" style="padding-right:5px"></i>Seleziona immagine</label>
+                            <span id="spanNewImage">Immagine non selezionata</span> <br />
+                        </div>                        
+                    </div>
+                    <div class="row" style="margin:0px; margin-top:10px; margin-bottom:10px;padding:0px;text-align:center;">
+                        <img src="" width="200" height="200" id="imgUploadUteNew"  onerror="this.src='../img/FotoBov/imgNull.png'" />
+                    </div>
+                    <input type="button" class="btn btn-primary" id="btnNewImage" onclick="BovNewImageUpload()" value="Carica" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Chiudi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
