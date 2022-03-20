@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CowBoyEntityDto;
 using CowBoyWeb.Models;
 using Newtonsoft.Json;
 
@@ -16,8 +17,51 @@ namespace CowBoyWeb.Controllers
         {
             return View();
         }
-        public ActionResult DettaglioBovini()
+
+        //public ActionResult DettaglioBovini()
+        //{
+
+        //    return View();
+        //}
+
+        public ActionResult DettaglioBovini(int idBov)
         {
+            var clCom = new ClassiComuni();
+            var conn = new CowBoy.ComponentsNew.BoviniCom();
+            var lst = conn.GetBovini(idBov, null, null, null, null, null, null, clCom.ConnectCbUniversal).FirstOrDefault();
+
+            ViewBag.Bovino = new BoviniDto()
+            {
+                Id = lst.Id,
+                MatricolaAsl = lst.MatricolaAsl,
+                MatricolaAz = lst.MatricolaAz,
+                Nome = lst.Nome,
+                IdMadre = lst.IdMadre,
+                MatricolaASLMadre = lst.MatricolaASLMadre,
+                IdPadre = lst.IdPadre,
+                MatricolaASLPadre = lst.MatricolaASLPadre,
+                DataNascita = lst.DataNascita,
+                DataNascitaStringa = lst.DataNascitaStringa,
+                DataFine = lst.DataFine,
+                DataFineStringa = lst.DataFineStringa,
+                Note = lst.Note,
+                IdParto = lst.IdParto,
+                IdFoto = lst.IdFoto,
+                ToroArtificiale = lst.ToroArtificiale,
+                ToroDaMonta = lst.ToroDaMonta,
+                Sesso = lst.Sesso,
+                NomeFoto = string.IsNullOrEmpty(lst.NomeFoto) ? "imgNull.png" : lst.NomeFoto,
+                FotoPrincipale = lst.FotoPrincipale,
+                DataInAsciutta = lst.DataInAsciutta,
+                DataInAsciuttaStringa = lst.DataInAsciuttaStringa,
+                DataUltimoPartoStringa = lst.DataUltimoPartoStringa,
+                MesiUltimoParto = lst.MesiUltimoParto,
+                UltimoSalto = lst.UltimoSalto,
+                UltimoSaltoStringa = lst.UltimoSaltoStringa,
+                GiorniUltimoSalto = lst.GiorniUltimoSalto
+
+            };
+
             return View();
         }
 
@@ -46,7 +90,7 @@ namespace CowBoyWeb.Controllers
         public ContentResult UploadImage(HttpPostedFileBase file)
         {
             string[] lst = new string[2];
-            
+
             try
             {
                 string fileName = Path.GetFileName(file.FileName);

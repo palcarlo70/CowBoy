@@ -36,7 +36,7 @@ function BovNewImageUpload() {
     formData.append("file", file);
 
     $.ajax({
-        url: "../Home/UploadImage",
+        url: "../UploadImage",
         type: "POST",
         data: formData,
         processData: false,
@@ -45,7 +45,7 @@ function BovNewImageUpload() {
             if (response !== null) {
                 var path = response[0];
                 if (path !== "" && path !== null) {
-                    $("#imgBov").attr("src", "../img/FotoUte/" + path);
+                    $("#imgBov").attr("src", "/img/FotoBov/" + path);
                     $("#txtBovPathImg").val(path);
                     $("#modalBovNewImagePopUp").modal('hide');
                 }
@@ -59,7 +59,7 @@ function BovNewImageUpload() {
 }
 
 function ChangeNewImage() {
-    var path = "../img/FotoBov/" + $("#txtBovPathImg").val();
+    var path = "/img/FotoBov/" + $("#txtBovPathImg").val();
     $("#imgBov").attr("src", path);
 }
 

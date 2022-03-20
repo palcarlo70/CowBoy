@@ -1,7 +1,8 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
+@*@Url.Action("DettaglioBovini", "Home")*@
+@Html.Hidden("hfDettaglioBovino", Url.Action("DettaglioBovini", "Home", null, Request.Url.Scheme))
 <div class="row">
     <div class="panel panel-primary">
         <div class="panel-heading clearfix" style="background-color: #d1dea8; padding-bottom: 0px; padding-top: 2px;" id="divIntestazione">

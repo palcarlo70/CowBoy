@@ -74,7 +74,7 @@ function popolaBovini() {
 
                 //fatEmessa = pos.FattEmessa === 1 ? "<h5 class=\"panel-title\" style=\"color: green;\"> <i class=\"fa fa-check\"></i> </span></h5>" : "";
 
-                rigap = td + tdCenter + "<a href=\"#\" onClick=\"getOrdiniSelectRow('" + pos.Id + "','rigaSelect" + conta + "')\" >" + pos.MatricolaAsl + "</a>" + tdCl +
+                rigap = td + tdCenter + "<a href=\"#\" onClick=\"boviDet(" + pos.Id + ")\" >" + pos.MatricolaAsl + "</a>" + tdCl +
                     tdCenter + pos.DataNascitaStringa + tdCl +
                     tdCenter + pos.Sesso + tdCl +
                     tdCenter + pos.DataUltimoPartoStringa + tdCl +
@@ -150,7 +150,7 @@ function popolaProssimiEventi() {
                     if (index % 2 === 1)
                         td = trDisp;
 
-                    rigap = td + tdCenter + "<a href=\"#\" onClick=\"getOrdiniSelectRow('" + pos.Id + "','rigaSelect" + conta + "')\" >" + pos.MatricolaAsl + "</a>" + tdCl +
+                    rigap = td + tdCenter + "<a href=\"#\" onClick=\"boviDet(" + pos.Id + ")\" >" + pos.MatricolaAsl + "</a>" + tdCl +
                         tdCenter + pos.EtaMesi + tdCl +
                         tdCenter + pos.GiorniUltimoParto + tdCl +
                         tdCenter + pos.ManzaVacca + tdCl +
@@ -178,7 +178,7 @@ function popolaProssimiEventi() {
 
                     if (index % 2 === 1)
                         td = trDisp;
-                    rigap = td + tdCenter + "<a href=\"#\" onClick=\"getOrdiniSelectRow('" + pos.Id + "','rigaSelect" + conta + "')\" >" + pos.MatricolaAsl + "</a>" + tdCl +
+                    rigap = td + tdCenter + "<a href=\"#\" onClick=\"boviDet(" + pos.Id + ")\" >" + pos.MatricolaAsl + "</a>" + tdCl +
                         tdCenter + pos.DataPartoStringa + tdCl +
                         + "</tr>";
                     $("#" + griglia + " tbody").append(rigap);
@@ -211,7 +211,7 @@ function popolaProssimiEventi() {
                            DataMessaInAsciutta = !dr.IsNull("DataMessaInAsciutta") ? DateTime.Parse(dr["DataMessaInAsciutta"].ToString()) : (DateTime?)null,
                            DataMessaInAsciuttaStringa = !dr.IsNull("DataMessaInAsciutta") ? DateTime.Parse(dr["DataMessaInAsciutta"].ToString()).ToString("dd/MM/yy") : string.Empty*/
 
-                    rigap = td + tdCenter + "<a href=\"#\" onClick=\"getOrdiniSelectRow('" + pos.Id + "','rigaSelect" + conta + "')\" >" + pos.MatricolaAsl + "</a>" + tdCl +
+                    rigap = td + tdCenter + "<a href=\"#\" onClick=\"boviDet(" + pos.Id + ")\" >" + pos.MatricolaAsl + "</a>" + tdCl +
                         tdCenter + pos.DataMessaInAsciuttaStringa + tdCl +
                         + "</tr>";
                     $("#" + griglia + " tbody").append(rigap);
@@ -226,4 +226,13 @@ function popolaProssimiEventi() {
             alert("Failed!");
         }
     });
+}
+
+function boviDet(id) {
+    //var url = '@Url.Action("DettaglioBovini", "Home", new { id = "__id__" })';
+    //window.location.href = url.replace('__id__', id);
+    //window.location.href = '/Home/DettaglioBovini/?idBov=' + id;
+
+    var percorso = $("#hfDettaglioBovino").val() + "/?idBov=" + id;
+    window.location.href = percorso;
 }
