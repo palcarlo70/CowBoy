@@ -141,7 +141,7 @@ function getDatiBovino(pidAnagrafica) {
             //};
             
             $("#txtMatricolaUsl").val(value.MatricolaAsl);
-            $("#txtMatricolaUsl").val(value.MatricolaAz);
+            $("#txtMatrAz").val(value.MatricolaAz);
             $("#txtNome").val(value.Nome);
             $("#txtDataNascita").val(value.DataNascitaStringa);
             $("#txtDataUscita").val(value.DataFineStringa);
@@ -153,14 +153,19 @@ function getDatiBovino(pidAnagrafica) {
             if (value.Sesso === "F") {
                 $('#chFBovino').prop('checked', true);
                 $('#chMBovino').prop('checked', false);
+                $("#divTipoToro").css("visibility", "hidden");
             } else {
                 $('#chFBovino').prop('checked', false);
                 $('#chMBovino').prop('checked', true);
+                
+                $("#divTipoToro").css("visibility", "visible"); 
             }
 
             if (value.ToroDaMonta === 1) $('#chToroDaMonta').prop('checked', true);
             if (value.ToroArtificiale === 1) $('#chToroArtificiale').prop('checked', true);
 
+            var path = "/img/FotoBov/" + value.NomeFoto;
+            $("#imgBov").attr("src", path);
         },
         failure: function () {
             alert("Failed!");
@@ -169,7 +174,7 @@ function getDatiBovino(pidAnagrafica) {
 }
 function pulisci() {
     $("#txtMatricolaUsl").val("");
-    $("#txtMatricolaUsl").val("");
+    $("#txtMatrAz").val("");
     $("#txtNome").val("");
     $("#txtDataNascita").val("");
     $("#txtDataUscita").val("");

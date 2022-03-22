@@ -42,7 +42,7 @@ namespace CowBoy.ComponentsNew
                             ToroDaMonta = !dr.IsNull("ToroDaMonta") ? Convert.ToInt32(dr["ToroDaMonta"].ToString()) : 0,
                             ToroArtificiale = !dr.IsNull("ToroArtificiale") ? Convert.ToInt32(dr["ToroArtificiale"].ToString()) : 0,
                             IdFoto = !dr.IsNull("idFoto") ? Convert.ToInt32(dr["idFoto"].ToString()) : (int?)null,
-                            NomeFoto = dr["NomeFoto"].ToString(),
+                            NomeFoto = string.IsNullOrEmpty(dr["NomeFoto"].ToString()) ? "imgNull.png": dr["NomeFoto"].ToString(),
                             FotoPrincipale = 1,
                             DataInAsciutta = !dr.IsNull("DataInAsciutta") ? DateTime.Parse(dr["DataInAsciutta"].ToString()) : (DateTime?)null,
                             DataInAsciuttaStringa = !dr.IsNull("DataInAsciutta") ? DateTime.Parse(dr["DataInAsciutta"].ToString()).ToString("dd/MM/yy") : string.Empty,
@@ -60,6 +60,8 @@ namespace CowBoy.ComponentsNew
             {
                 return null;
             }
+
+
 
             return nods;
         }

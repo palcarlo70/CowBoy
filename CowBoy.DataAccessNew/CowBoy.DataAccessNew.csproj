@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DBWork">
+      <HintPath>..\..\AvalonNetwork\DBWork\bin\Debug\DBWork.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,12 +46,6 @@
   <ItemGroup>
     <Compile Include="BoviniDac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\AvalonNetworkNew\DBWork\DBWork.csproj">
-      <Project>{c6fe6d9b-328f-4c0b-9462-abf0e2985c0d}</Project>
-      <Name>DBWork</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

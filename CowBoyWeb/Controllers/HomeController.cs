@@ -24,7 +24,7 @@ namespace CowBoyWeb.Controllers
         //    return View();
         //}
 
-        public ActionResult DettaglioBovini(int idBov)
+        public ActionResult DettaglioBovini(int? idBov)
         {
 
             ViewBag.Bovino = new BoviniDto()

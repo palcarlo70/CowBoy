@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DBWork">
+      <HintPath>..\..\AvalonNetwork\DBWork\bin\Debug\DBWork.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,10 +48,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AvalonNetworkNew\DBWork\DBWork.csproj">
-      <Project>{C6FE6D9B-328F-4C0B-9462-ABF0E2985C0D}</Project>
-      <Name>DBWork</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CowBoy.DataAccessNew\CowBoy.DataAccessNew.csproj">
       <Project>{768c9077-358c-4a7a-8595-09c25d81d37b}</Project>
       <Name>CowBoy.DataAccessNew</Name>
