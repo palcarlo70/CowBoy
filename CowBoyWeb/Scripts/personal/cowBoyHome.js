@@ -59,7 +59,7 @@ function popolaBovini() {
             $("#" + griglia).find("tr:not(:first)").remove(); //Pulizia della griglia
 
             if (value !== null) $("#lblNumRecordBovini").html(value.length);
-            var fatEmessa
+           
             $.each(value, function (index, pos) {
             try {
                 var td;

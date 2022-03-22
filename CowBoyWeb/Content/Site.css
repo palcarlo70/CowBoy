@@ -184,3 +184,8 @@ textarea {
     color: #337ab7;
     font-weight: 700;
 }
+
+.labelColor {
+    color: #3c763d;
+    font-weight: bold;
+}

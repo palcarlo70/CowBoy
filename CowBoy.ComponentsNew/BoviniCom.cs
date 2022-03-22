@@ -33,9 +33,9 @@ namespace CowBoy.ComponentsNew
                             IdPadre = !dr.IsNull("Padre") ? Convert.ToInt32(dr["Padre"].ToString()) : (int?)null,
                             MatricolaASLPadre = dr["MatricolaASLPadre"].ToString(),
                             DataNascita = !dr.IsNull("DataNascita") ? DateTime.Parse(dr["DataNascita"].ToString()) : (DateTime?)null,
-                            DataNascitaStringa = !dr.IsNull("DataNascita") ? DateTime.Parse(dr["DataNascita"].ToString()).ToString("dd/MM/yy") : string.Empty,
+                            DataNascitaStringa = !dr.IsNull("DataNascita") ? DateTime.Parse(dr["DataNascita"].ToString()).ToString("dd/MM/yyyy") : string.Empty,
                             DataFine = !dr.IsNull("DataFine") ? DateTime.Parse(dr["DataFine"].ToString()) : (DateTime?)null,
-                            DataFineStringa = !dr.IsNull("DataFine") ? DateTime.Parse(dr["DataFine"].ToString()).ToString("dd/MM/yy") : string.Empty,
+                            DataFineStringa = !dr.IsNull("DataFine") ? DateTime.Parse(dr["DataFine"].ToString()).ToString("dd/MM/yyyy") : string.Empty,
                             Note = dr["Nome"].ToString(),
                             IdParto = !dr.IsNull("idParto") ? Convert.ToInt32(dr["idParto"].ToString()) : (int?)null, // collegamento alla nascita in azienda per risalire ai dati sulla nascita
                             Sesso = dr["Sesso"].ToString(),
