@@ -91,7 +91,8 @@ function checkSesso(clickedid, controlFalse, viewDiv, chTrue) {
 }
 
 function getDatiBovino(pidAnagrafica) {
-    
+    pulisci();
+
     $.ajax({
         url: "../GetBovini",
         type: "POST",
@@ -108,70 +109,42 @@ function getDatiBovino(pidAnagrafica) {
             inAzienda: null
         },
         success: function (value) {
-            //.Bovino = new BoviniDto()
-            //{
-            //    Id = lst.Id,
-            //    MatricolaAsl = lst.MatricolaAsl,
-            //    MatricolaAz = lst.MatricolaAz,
-            //    Nome = lst.Nome,
-            //    IdMadre = lst.IdMadre,
-            //    MatricolaASLMadre = lst.MatricolaASLMadre,
-            //    IdPadre = lst.IdPadre,
-            //    MatricolaASLPadre = lst.MatricolaASLPadre,
-            //    DataNascita = lst.DataNascita,
-            //    DataNascitaStringa = lst.DataNascitaStringa,
-            //    DataFine = lst.DataFine,
-            //    DataFineStringa = lst.DataFineStringa,
-            //    Note = lst.Note,
-            //    IdParto = lst.IdParto,
-            //    IdFoto = lst.IdFoto,
-            //    ToroArtificiale = lst.ToroArtificiale,
-            //    ToroDaMonta = lst.ToroDaMonta,
-            //    Sesso = lst.Sesso,
-            //    NomeFoto = string.IsNullOrEmpty(lst.NomeFoto) ? "imgNull.png" : lst.NomeFoto, /img/FotoBov/
-            //    FotoPrincipale = lst.FotoPrincipale,
-            //    DataInAsciutta = lst.DataInAsciutta,
-            //    DataInAsciuttaStringa = lst.DataInAsciuttaStringa,
-            //    DataUltimoPartoStringa = lst.DataUltimoPartoStringa,
-            //    MesiUltimoParto = lst.MesiUltimoParto,
-            //    UltimoSalto = lst.UltimoSalto,
-            //    UltimoSaltoStringa = lst.UltimoSaltoStringa,
-            //    GiorniUltimoSalto = lst.GiorniUltimoSalto
+          
+            if (value != null) {
+                $("#txtMatricolaUsl").val(value.MatricolaAsl);
+                $("#txtMatrAz").val(value.MatricolaAz);
+                $("#txtNome").val(value.Nome);
+                $("#txtDataNascita").val(value.DataNascitaStringa);
+                $("#txtDataUscita").val(value.DataFineStringa);
+                $("#txtCercaMadre").val(value.MatricolaASLMadre);
+                $("#hdIdMadre").val(value.IdMadre);
+                $("#txtCercaPadre").val(value.MatricolaASLPadre);
+                $("#hdIdPadre").val(value.IdPadre);
 
-            //};
-            
-            $("#txtMatricolaUsl").val(value.MatricolaAsl);
-            $("#txtMatrAz").val(value.MatricolaAz);
-            $("#txtNome").val(value.Nome);
-            $("#txtDataNascita").val(value.DataNascitaStringa);
-            $("#txtDataUscita").val(value.DataFineStringa);
-            $("#txtCercaMadre").val(value.MatricolaASLMadre);
-            $("#hdIdMadre").val(value.IdMadre);
-            $("#txtCercaPadre").val(value.MatricolaASLPadre);
-            $("#hdIdPadre").val(value.IdPadre);
+                if (value.Sesso === "F") {
+                    $('#chFBovino').prop('checked', true);
+                    $('#chMBovino').prop('checked', false);
+                    $("#divTipoToro").css("visibility", "hidden");
+                } else {
+                    $('#chFBovino').prop('checked', false);
+                    $('#chMBovino').prop('checked', true);
 
-            if (value.Sesso === "F") {
-                $('#chFBovino').prop('checked', true);
-                $('#chMBovino').prop('checked', false);
-                $("#divTipoToro").css("visibility", "hidden");
-            } else {
-                $('#chFBovino').prop('checked', false);
-                $('#chMBovino').prop('checked', true);
-                
-                $("#divTipoToro").css("visibility", "visible"); 
+                    $("#divTipoToro").css("visibility", "visible");
+                }
+
+                if (value.ToroDaMonta === 1) $('#chToroDaMonta').prop('checked', true);
+                if (value.ToroArtificiale === 1) $('#chToroArtificiale').prop('checked', true);
+
+                var path = "/img/FotoBov/" + value.NomeFoto;
+                $("#imgBov").attr("src", path);
             }
-
-            if (value.ToroDaMonta === 1) $('#chToroDaMonta').prop('checked', true);
-            if (value.ToroArtificiale === 1) $('#chToroArtificiale').prop('checked', true);
-
-            var path = "/img/FotoBov/" + value.NomeFoto;
-            $("#imgBov").attr("src", path);
         },
         failure: function () {
             alert("Failed!");
         }
     });
 }
+
 function pulisci() {
     $("#txtMatricolaUsl").val("");
     $("#txtMatrAz").val("");
@@ -190,4 +163,8 @@ function pulisci() {
 
     $('#chToroDaMonta').prop('checked', false);
     $('#chToroArtificiale').prop('checked', false);
+}
+
+function NuovoSalto() {
+
 }

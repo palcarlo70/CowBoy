@@ -95,9 +95,6 @@
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4" style="padding-left: 0px; padding-right: 35px">
-                            <div class="col-lg-12 col-md-12 col-sm-12" style="padding:0px;">
-                                <img src="" class="" width="240" height="240" id="imgBov" />
-                            </div>
                             <div class="col-lg-12 col-md-12 col-sm-12" style="padding:0px">
                                 <h2 class="bluGrassetto" id="txtUteMatricola" style="display: inline"></h2>
                                 <div class="form-group" style="margin-top: 15px">
@@ -113,27 +110,39 @@
                                     <input type="text" class="form-control" id="txtBovPathImg" style="width:240px;" />
                                 </div>
                             </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12" style="padding:0px;">
+                                <img src="" class="" width="340" height="340" id="imgBov" />
+                            </div>
                         </div>
                     </div>
                     <div id="lavoro" class="container tab-pane fade" style="width:100%">
                         <div class="col-lg-12 col-md-12 col-sm-12" style="padding: 0px; text-align: right;">
-                            <button class="btn btn-info" onclick="OpenUteMovPopup(null)" style="border-radius:20px; outline:none">Nuova Informazione</button>
+                            <button class="btn btn-info" onclick="NuovoSalto()" style="border-radius:20px; outline:none">Nuovo Salto</button>
                         </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12" style="padding:0px">
+                        <div class="col-lg-3 col-md-3 col-sm-3" style="padding:0px">
                             <div class="table-responsive" style="max-height:400px; overflow-y:auto">
                                 <table class="table table-hover table-responsive" id="gridUteStorico">
                                     <thead>
                                         <tr>
-                                            <th scope="col">
-                                                Num
-
-                                            </th>
-                                            <th scope="col">Data</th>
-                                            <th scope="col">Operazione</th>
-                                            <th scope="col">Tipo Contratto</th>
-                                            <th scope="col">Azienda</th>
-                                            <th scope="col">Reparto</th>
+                                            <th scope="col">Num</th>
+                                            <th scope="col">Data Parto</th>
+                                            <th scope="col">Stato</th>
+                                            <th scope="col">Figli</th>
                                         </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3" style="">
+                            <div class="table-responsive" style="max-height:400px; overflow-y:auto">
+                                <table class="table table-hover table-responsive" id="gridUteStorico">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Num</th>
+                                        <th scope="col">Data Salto</th>
+                                        <th scope="col">A.N.</th>
+                                    </tr>
                                     </thead>
                                     <tbody></tbody>
                                 </table>
