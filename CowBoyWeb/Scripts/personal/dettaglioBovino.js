@@ -165,6 +165,6 @@ function pulisci() {
     $('#chToroArtificiale').prop('checked', false);
 }
 
-function NuovoSalto() {
+function NuovoPartoSalto() {
 
 }
